@@ -9,7 +9,7 @@ MAINTAINER Siarhei Navatski <navatski@gmail.com>, Andrey Aleksandrov <alex.demio
 #------------------------------------------------------------------------------
 ENV VERSION="1.7.7" \
     RELEASE_DATE="12.08.2018" \
-    CRON_TIMEOUT="0 * * * *" \
+    CRON_TIMEOUT="*/10 * * * *" \
     PHP_TIMEZONE="UTC" \
     PHP_MEMORY_LIMIT="512M" \
     LD_PRELOAD="/usr/local/lib/preloadable_libiconv.so"
@@ -25,10 +25,9 @@ ADD rootfs /
 RUN apk update \
     && apk upgrade \
     && apk --no-cache add --update -t deps wget unzip sqlite build-base tar re2c make file curl \
-    && apk --no-cache add nginx php5-common php5-cli php5-fpm php5-curl php5-sqlite3 php5-pdo_sqlite php5-iconv php5-json php5-ctype php5-zip \
-    && wget -q http://korphome.ru/torrent_monitor/tm-latest.zip -O /tmp/tm-latest.zip \
-    && unzip /tmp/tm-latest.zip -d /tmp/ \
-    && mv /tmp/TorrentMonitor-master/* /data/htdocs \
+    && apk --no-cache add git nginx php5-common php5-cli php5-fpm php5-curl php5-sqlite3 php5-pdo_sqlite php5-iconv php5-json php5-ctype php5-zip \
+    && git clone https://github.com/ElizarovEugene/TorrentMonitor.git /tmp/TorrentMonitor/ \
+    && mv /tmp/TorrentMonitor/* /data/htdocs \
     && cat /data/htdocs/db_schema/sqlite.sql | sqlite3 /data/htdocs/db_schema/tm.sqlite \
     && mkdir -p /var/log/nginx/ \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
