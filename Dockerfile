@@ -10,7 +10,7 @@ MAINTAINER Siarhei Navatski <navatski@gmail.com>, Andrey Aleksandrov <alex.demio
 ENV VERSION="1.7.7" \
     RELEASE_DATE="12.08.2018" \
     CRON_TIMEOUT="*/10 * * * *" \
-    PHP_TIMEZONE="UTC" \
+    PHP_TIMEZONE="CST" \
     PHP_MEMORY_LIMIT="512M" \
     LD_PRELOAD="/usr/local/lib/preloadable_libiconv.so"
 
