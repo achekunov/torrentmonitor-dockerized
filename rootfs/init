@@ -8,6 +8,10 @@ test -f /data/htdocs/db/tm.sqlite || cp /data/htdocs/db_schema/tm.sqlite /data/h
 sed -i "s#PHP_TIMEZONE#${PHP_TIMEZONE}#" /etc/php5/php.ini
 sed -i "s#PHP_TIMEZONE#${PHP_TIMEZONE}#" /etc/php5/cli/php.ini
 
+echo $TZ > /etc/timezone
+echo $TZ > /etc/TZ
+unset TZ
+
 # Set PHP memory limit
 sed -i "s#PHP_MEMORY_LIMIT#${PHP_MEMORY_LIMIT}#" /etc/php5/php.ini
 sed -i "s#PHP_MEMORY_LIMIT#${PHP_MEMORY_LIMIT}#" /etc/php5/cli/php.ini

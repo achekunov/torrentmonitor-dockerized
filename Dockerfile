@@ -40,6 +40,8 @@ RUN apk update \
     && make && make install \
     && apk del --purge deps; rm -rf /tmp/* /var/cache/apk/*
 
+COPY Chicago /etc/localtime
+
 #------------------------------------------------------------------------------
 # Set labels:
 #------------------------------------------------------------------------------
